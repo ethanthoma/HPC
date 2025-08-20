@@ -6,6 +6,19 @@ touch $HOME/.bashrc
 mkdir -p $HOME/.config/
 mkdir -p $HOME/.local/bin/
 
+if ! grep -q "TERM=xterm" $HOME/.bashrc; then
+    echo 'export TERM=xterm' >> $HOME/.bashrc
+fi
+
+# editor
+if ! grep -q "EDITOR=nvim" $HOME/.bashrc; then
+    echo 'export EDITOR=nvim' >> $HOME/.bashrc
+fi
+if ! grep -q "=\"nvim\"" $HOME/.bashrc; then
+    echo 'alias vim="nvim"' >> $HOME/.bashrc
+    echo 'alias vi="nvim"' >> $HOME/.bashrc
+fi
+
 # install uv and tools
 if ! command -v uv &> /dev/null; then 
     curl -LsSf https://astral.sh/uv/install.sh | sh
