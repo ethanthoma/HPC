@@ -19,6 +19,11 @@ if ! grep -q "=\"nvim\"" $HOME/.bashrc; then
     echo 'alias vi="nvim"' >> $HOME/.bashrc
 fi
 
+# git
+if ! git config --global --get alias.s &> /dev/null; then
+    git config --global alias.s status
+fi
+
 # install uv and tools
 if ! command -v uv &> /dev/null; then 
     curl -LsSf https://astral.sh/uv/install.sh | sh
