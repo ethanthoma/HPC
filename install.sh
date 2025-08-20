@@ -22,6 +22,8 @@ fi
 # install uv and tools
 if ! command -v uv &> /dev/null; then 
     curl -LsSf https://astral.sh/uv/install.sh | sh
+    echo 'export UV_CACHE_DIR="$SCRATCH/uv_cache"' >> $HOME/.bashrc
+    echo 'export UV_TOOL_DIR="$SCRATCH/uv_tools"' >> $HOME/.bashrc
 fi
 if ! uv tool list | grep -q "ruff"; then
     uv tool install ruff@latest
