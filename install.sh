@@ -10,7 +10,12 @@ if ! grep -q "TERM=xterm" $HOME/.bashrc; then
     echo 'export TERM=xterm' >> $HOME/.bashrc
 fi
 
-# editor
+# neovim
+if ! command -v nvim &> /dev/null; then
+    wget https://github.com/neovim/neovim/releases/download/v0.11.4/nvim-linux-x86_64.appimage
+    chmod u+x nvim-linux-x86_64.appimage
+    mv nvim-linux-x86_64.appimage $HOME/.local/bin/nvim
+fi
 if ! grep -q "EDITOR=nvim" $HOME/.bashrc; then
     echo 'export EDITOR=nvim' >> $HOME/.bashrc
 fi
@@ -84,13 +89,22 @@ fi
 if ! command -v zoxide &> /dev/null; then
     wget https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.8/zoxide-0.9.8-x86_64-unknown-linux-musl.tar.gz \
         -O zoxide.tar.gz
-    tar -xzf zoxide.tar.gz
-    mv zoxide $HOME/.local/bin/
-    rm zoxide.tar.gz
+    mkdir -p zoxide
+    tar -xzf zoxide.tar.gz -C zoxide
+    mv zoxide/zoxide $HOME/.local/bin/
+    rm -rf zoxide.tar.gz zoxide
 fi
 
 if ! grep -q "zoxide init bash" $HOME/.bashrc; then
     echo 'eval "$(zoxide init bash --cmd cd)"' >> $HOME/.bashrc
+fi
+
+# dust
+if ! command -v dust &> /dev/null; then
+    wget https://github.com/bootandy/dust/releases/download/v1.2.3/dust-v1.2.3-x86_64-unknown-linux-gnu.tar.gz
+    tar -xvf dust-v1.2.3-x86_64-unknown-linux-gnu.tar.gz
+    mv dust-v1.2.3-x86_64-unknown-linux-gnu/dust $HOME/.local/bin/du
+    rm -rf dust-v1.2.3-x86_64-unknown-linux-gnu dust-v1.2.3-x86_64-unknown-linux-gnu.tar.gz
 fi
 
 # epi
