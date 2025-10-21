@@ -102,8 +102,8 @@ fi
 # dust
 if ! command -v dust &> /dev/null; then
     wget https://github.com/bootandy/dust/releases/download/v1.2.3/dust-v1.2.3-x86_64-unknown-linux-gnu.tar.gz
-    tar -xvf dust-v1.2.3-x86_64-unknown-linux-gnu.tar.gz
-    mv dust-v1.2.3-x86_64-unknown-linux-gnu/dust $HOME/.local/bin/du
+    tar -xf dust-v1.2.3-x86_64-unknown-linux-gnu.tar.gz
+    mv dust-v1.2.3-x86_64-unknown-linux-gnu/dust $HOME/.local/bin/dust
     rm -rf dust-v1.2.3-x86_64-unknown-linux-gnu dust-v1.2.3-x86_64-unknown-linux-gnu.tar.gz
 fi
 
